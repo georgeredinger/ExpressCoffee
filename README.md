@@ -5,17 +5,17 @@
 * electric coffee pot's current draw is measured with a current transformer
 * current transformer turns on a transistor which turns on a reed relay
 * reed relay is wired across the right mouse button switch of a wireless mouse
+* wireless mouse's RX dongle pluged into Linux server's usb port in the server room
+* when coffee pot draws current for a long time (>240 seconds) it's brewing
 * when coffee pot draws current (<20 seconds) for a short time, it's heating
 * when coffee pot has a lot of heating cycles between brews (> 20 cycles?) it's old coffee
-* when coffee pot draw current for a long time (>240 seconds) it's brewing
 * when coffee pot draws no current for a long time (> 300 seconds) it's off
-* wireless mouse's RX dongle pluged into Linux server's usb port in the server room
-* express (nodejs) app watches for mouse button down and up clicks 
-* configure udev permissions on mouse input devices (/dev/input/event?) so node process has read permissions
+* express (nodejs) app watches for mouse button down and up clicks to determine the state of the pot and keep coffee drinkers aprised 
 
 ### TODO:
 
 * Detect mouse(s) and associate with sensors, possibly with a config file
+* configure udev permissions on mouse input devices (/dev/input/event?) so node process has read permissions
 * Serve the pots status via a http server
 * Tweet coffee done (new)
 * Tweet coffee old
