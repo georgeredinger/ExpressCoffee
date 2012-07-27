@@ -2,7 +2,7 @@
 
 ### What/How:
 
-* electric coffee pot's current draw is measured with a current transformer
+* electric coffee pot's current draw is measured with a current transformer (1100W@110V === 10Amps)
 * current transformer turns on a transistor which turns on a reed relay
 * reed relay is wired across the right mouse button switch of a wireless mouse
 * wireless mouse's RX dongle pluged into Linux server's usb port in the server room
