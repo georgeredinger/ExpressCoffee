@@ -3,13 +3,14 @@
  */
 
 var express = require('express')
-sys  = require('util')
+, sys  = require('util')
 , fs   = require('fs')
 , io = require('socket.io')
-, history = require('./history')
-, decode   = require('./decoders')
 , routes = require('./routes')
-, http = require('http');
+, http = require('http')
+, events = require('events')
+, history = require('./history')
+, decode   = require('./decoders');
 
 var app = express();
 var heat_start = 0;
@@ -61,7 +62,9 @@ app.configure('production', function(){
 });
 
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+		  res.render('index', {history:history,title: 'The Office Coffee Pot'});
+	});
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening on port " + app.get('port'));

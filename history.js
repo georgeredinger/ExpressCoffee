@@ -1,4 +1,4 @@
-var history = [
+var dat = [
 	{
 	id: 1,
 	name: "Start",
@@ -6,14 +6,13 @@ var history = [
 },
 ];
 var history_size=1000;
-module.exports.all = history;
 
 module.exports.recent = function(){
-  if(history.length >= history_size){
-		history=history.slice(-(history_size-1));
+  if(dat.length >= history_size){
+		dat=dat.slice(-(history_size-1));
 	}
 	//return history.slice(-100);
-	return history;
+	return dat;
 }
 
 module.exports.new = function(){
@@ -24,9 +23,9 @@ module.exports.new = function(){
 }
 
 module.exports.insert = function(message){
-	var new_id = history.length + 1;
-	history.push({id:new_id, ts:Date.now(),name:message});
-	console.log("inserted:" + history[history.length-1].id+":"+history[history.length-1].ts+":"+history[history.length-1].name);
+	var new_id = dat.length + 1;
+	dat.push({id:new_id, ts:Date.now(),name:message});
+	console.log("inserted:" + dat[dat.length-1].id+":"+dat[dat.length-1].ts+":"+dat[dat.length-1].name);
 	return new_id;
 }
 
