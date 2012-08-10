@@ -18,12 +18,16 @@ warming_interval = 4*60*1000,
 happenen = Date.now();
 var ticks=0;
 if(process.env.input !=''){
-	input_device="/dev/input/"+process.env.input;
+	if(! process.env.input) {
+		input_device="/dev/input/event9";
+	}else{
+	  input_device="/dev/input/"+process.env.input;
+	}
 }else{
 	if(process.argv.length != 3) {
-		console.log("supply input device name");
-		console.log("eg, node "+process.argv[1]+ "event13");
-		exit(0);
+		console.log("using /dev/input/event9");
+		console.log(" or uses node "+process.argv[1]+ "event13");
+		input_device="/dev/input/event9";
 	}else{
 		input_device="/dev/input/"+process.argv[2];
 	}
@@ -81,6 +85,7 @@ fs.open(input_device, "r", function (err, fd) {
 	}
 	startRead();
 });
+
 function handle_timeout() {
 	if(!heating) {
 		if((Date.now()-happenen) < warming_interval) {

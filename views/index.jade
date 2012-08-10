@@ -3,9 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to Nerdlandia
-  <ol>
-  <li> TS: Event </li>
-  each event, i in history.recent()
-    <li> #{event.ts}: #{event.name} </li>
-  </ol>
+  ol
+    li TS: Event 
+    each event, i in history.recent()
+      li #{event.ts}: #{event.name} 
   

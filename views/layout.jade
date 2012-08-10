@@ -3,5 +3,25 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+	  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<!--		<script type="text/javascript" src="http://coffee.redinger.me:4321/socket.io/socket.io.js"></script> -->
+		<script src="http://localhost:4321/socket.io/socket.io.js"></script>
+	  <script type="text/javascript">
+      $(document).ready(function() {
+	  		//socket = io.connect('http://coffee.redinger.me:4321');
+	  		socket = io.connect('http://localhost:4321');
+	  		console.log("connecting...");
+	  		socket.on('connect', function() {
+	  			console.log('connect');
+	  	  });
+
+	  		socket.on('message', function(message) {
+	  			var data = message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+	  			$('#log ul').append('<li>' + data + '</li>');          
+          window.scrollTo(0, document.body.scrollHeight);
+	  		});
+	  	});
+	  </script>
+
   body
     block content

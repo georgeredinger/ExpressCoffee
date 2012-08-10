@@ -15,6 +15,8 @@ var express = require('express')
 
 var app = express();
 
+var ip='127.0.0.1';
+
 app.configure(function(){
 	app.set('port', process.env.PORT || 4321);
 	app.set('views', __dirname + '/views');
@@ -29,10 +31,12 @@ app.configure(function(){
 
 app.configure('development', function(){
 	console.log("configure Development mode");
+	app.set('ip', process.env.ip || '127.0.0.1');
 	app.use(express.errorHandler());
 });
 app.configure('production', function(){
 	console.log("configure Production mode");
+	app.set('ip', process.env.ip || 'pi.redinger.me');
 	app.use(express.errorHandler());
 });
 
